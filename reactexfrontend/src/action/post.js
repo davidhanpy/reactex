@@ -10,9 +10,9 @@ export function writePost(textObj) {
         data: textObj,
     };
 }
-export function deletePost(idx) {
+export function deletePost(id) {
     return {
         type: 'DELETE_POST',
-        idx,
+        id,
     };
 }

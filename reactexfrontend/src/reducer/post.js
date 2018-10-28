@@ -10,7 +10,8 @@ function post(state = initialState, action) {
         case 'INIT_POST':
             return { ...state, postList: action.textArr }
         case 'DELETE_POST':
-            return { ...state, postList: [...state.postList.filter(action.idx) ] }
+            console.log(action.id)
+            return { ...state, postList: [...state.postList.filter((post)=> {return post.id!==action.id})] }
         default:
             return state;
     }

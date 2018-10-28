@@ -26,7 +26,7 @@ class InfoDetail extends React.PureComponent {
         .then((result) => {
             if (result.status === 200) {
                 this.props.deletePost(result.data);   
-                this.props.push('/home') ;
+                this.props.push('/home');
             }
         });
     }
