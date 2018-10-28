@@ -6,6 +6,7 @@ from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views import View
+from . import models
 import jwt
 import json
 
@@ -29,6 +30,8 @@ class signin(View):
         PW = body['pw']
         user = authenticate(request, username=ID, password=PW)
         if user is not None:
+            newToken = models.Token(user = user)
+            newToken.save()
             encoded = jwt.encode(
                 {'id':user.username, 'email':user.email},
                 'MySiteSecret', algorithm='HS256')

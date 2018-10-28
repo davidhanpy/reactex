@@ -1,17 +1,24 @@
 from django.shortcuts import render
 from django.views import View
-import json
 from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
-from .import models
+from user.decorators import isSignedUser
+from . import models
+import json
+
 
 class Post(View):
+    @isSignedUser
     def get(self, request):
-        posts =models.Post.objects.all()
-        results = []
-        for post in posts:
-            results.append(model_to_dict(post))
-        return JsonResponse(results, safe=False)
+        if isSignedUser(request):
+            posts = models.Post.objects.all()
+            results = []
+            for post in posts:
+                results.append(model_to_dict(post))
+            return JsonResponse(results, safe=False)
+        else:
+            return HttpResponse(status = 403)
+    @isSignedUser
     def post(self, request):
         body = json.loads(request.body)
         text = body['text']
@@ -21,6 +28,8 @@ class Post(View):
             return HttpResponse(newPost.pk, status=200)
         except Exception as e:
             return HttpResponse(status=500)
+
+    @isSignedUser
     def delete(self, request):
         ID = request.GET.get('id',None)
         DeletePost = models.Post.objects.get(pk=ID)
