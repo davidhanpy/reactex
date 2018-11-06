@@ -11,10 +11,12 @@ class InfoDetail extends React.PureComponent {
         if (this.state.post === null || this.state.post === undefined) {
             return null;
         }
+        console.log(this.state.post)
         return (
             <div>
                 <p>
                     {this.state.post.text}
+                    {this.state.post.id}
                  
                 </p>
                 <button onClick={this.onSubmit}>DELETE</button>
@@ -32,6 +34,7 @@ class InfoDetail extends React.PureComponent {
     }
 
     componentDidMount() {
+        console.log(this.props.path)
         const postId = this.props.path.split('/')[2];
         const post = this.props.postList[Number(postId)];
         this.setState({ post });
