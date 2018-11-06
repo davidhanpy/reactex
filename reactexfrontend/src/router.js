@@ -32,6 +32,10 @@ class AppRouter extends React.Component {
         .then((result) => {
             this.props.initPost(result.data);
         })
+        axios.get('http://127.0.0.1:8000/blog/comment/')
+        .then((result) => {
+            this.props.initComment(result.data);
+        })
     }
 }
 

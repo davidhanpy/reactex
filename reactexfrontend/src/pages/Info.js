@@ -3,6 +3,7 @@ import InfoDetail from './InfoDetail';
 import InfoForm from './InfoForm';
 
 const Info = ({ match }) => {
+    console.log(match)
     const id = match.params.id;
     if (id) {
         return (

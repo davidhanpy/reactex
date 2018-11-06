@@ -1,5 +1,6 @@
 const initialState = {
     postList: [],
+    commentList: [],
 }
 
 function post(state = initialState, action) {
@@ -9,6 +10,8 @@ function post(state = initialState, action) {
             return { ...state, postList: [...state.postList, action.data] }
         case 'INIT_POST':
             return { ...state, postList: action.textArr }
+        case 'INIT_COMMENT':
+            return {...state, commentList: action.textArr}
         case 'DELETE_POST':
             return { ...state, postList: [...state.postList.filter((post)=> {return post.id!==action.id})] }
         default:

@@ -5,19 +5,22 @@ import getActions from '../action';
 
 class InfoDetail extends React.PureComponent {
     state = {
-        post: null
+        post: null,
+        comment: null
     }
     render() {
         if (this.state.post === null || this.state.post === undefined) {
             return null;
         }
         console.log(this.state.post)
+        const id = this.state.post.id 
         return (
             <div>
                 <p>
                     {this.state.post.text}
-                    {this.state.post.id}
-                 
+                </p>
+                <p>
+                    {this.state.comment.filter((id)=> )}
                 </p>
                 <button onClick={this.onSubmit}>DELETE</button>
             </div>
@@ -34,15 +37,18 @@ class InfoDetail extends React.PureComponent {
     }
 
     componentDidMount() {
-        console.log(this.props.path)
+        
         const postId = this.props.path.split('/')[2];
         const post = this.props.postList[Number(postId)];
-        this.setState({ post });
+        const comment = this.props.commentList
+        console.log(comment)
+        this.setState({ post, comment });
     }
 }
 function mapStateToProps(state) {
     return {
         postList: state.post.postList,
+        commentList: state.post.commentList,
         path: state.router.location.pathname,
     }
 }

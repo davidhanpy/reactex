@@ -4,6 +4,12 @@ export function initPost(textArr) {
         textArr,
     };
 }
+export function initComment(textArr) {
+    return {
+        type: 'INIT_COMMENT',
+        textArr,
+    };
+}
 export function writePost(textObj) {
     return {
         type: 'WRITE_POST',

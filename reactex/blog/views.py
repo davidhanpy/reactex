@@ -12,12 +12,9 @@ class Post(View):
     def get(self, request):
         if isSignedUser(request):
             posts = models.Post.objects.all()
-            comments = models.Comment.objects.all()
             results = []
             for post in posts:
                 results.append(model_to_dict(post))
-            for comment in comments:
-                results.append(model_to_dict(comment))
             return JsonResponse(results, safe=False)
         else:
             return HttpResponse(status = 403)
@@ -39,4 +36,16 @@ class Post(View):
         idx = DeletePost.pk
         DeletePost.delete()
         return HttpResponse(idx)
+
+class Comment(View):
+    # @isSignedUser
+    def get(self, request):
+        if isSignedUser(request):
+            comments = models.Comment.objects.all()
+            results = []
+            for comment in comments:
+                results.append(model_to_dict(comment))
+            return JsonResponse(results, safe=False)
+        else:
+            return HttpResponse(status = 403)
 # Create your views here.
