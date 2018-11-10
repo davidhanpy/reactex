@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './Home.css';
 
 const Home = ({postList}) => {
     const pList = postList.map((post, idx) => {
-        return <Link key={idx} to={`/info/${idx}`}><h4>{post.text}</h4></Link>
+        return <Link key={idx} to={`/info/${idx}`}>
+        <p>{post.text}</p>
+        </Link>
     })
     return (
-        <div>
+        <div className="pList">
             {pList}
         </div>
     )

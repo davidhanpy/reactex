@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import getActions from '../action';
+import './InfoDetail.css';
 
 class InfoDetail extends React.PureComponent {
     state = {
@@ -12,15 +13,13 @@ class InfoDetail extends React.PureComponent {
         if (this.state.post === null || this.state.post === undefined) {
             return null;
         }
-        console.log(this.state.post)
-        const id = this.state.post.id 
+
         return (
-            <div>
+            <div className="text">
                 <p>
                     {this.state.post.text}
                 </p>
                 <p>
-                    {this.state.comment.filter((id)=> )}
                 </p>
                 <button onClick={this.onSubmit}>DELETE</button>
             </div>
@@ -40,8 +39,14 @@ class InfoDetail extends React.PureComponent {
         
         const postId = this.props.path.split('/')[2];
         const post = this.props.postList[Number(postId)];
-        const comment = this.props.commentList
-        console.log(comment)
+        const comment = [this.props.commentList]
+        // var result = new Array();
+        // console.log(comment.length)
+        // for (var k = 0; k < comment.length; k++) {
+        //     console.log(k, comment[k]);
+        //     result = result.concat(comment[k])
+        // }
+        // console.log(result)
         this.setState({ post, comment });
     }
 }

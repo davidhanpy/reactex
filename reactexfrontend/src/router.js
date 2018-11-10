@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import axios from 'axios';
-
 import * as pages from './pages';
 import getActions from './action';
 

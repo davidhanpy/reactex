@@ -5,6 +5,7 @@ import axios from 'axios';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import getActions from '../action';
+import './InfoForm.css';
 
 class InfoForm extends PureComponent {
     state = {
@@ -14,7 +15,7 @@ class InfoForm extends PureComponent {
     render() {
         const { editorState, text } = this.state;
         return (
-            <div>
+            <div class="Form">
                 {/* <Editor
           editorState={editorState}
           onEditorStateChange={this.onEditorStateChange}

@@ -8,7 +8,6 @@ const Info = ({ match }) => {
     if (id) {
         return (
             <div>
-                <h1>Blog Title</h1>
                 <InfoDetail id={id} />
                 <InfoForm />
             </div>
