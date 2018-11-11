@@ -30,12 +30,22 @@ class signin(View):
         PW = body['pw']
         user = authenticate(request, username=ID, password=PW)
         if user is not None:
-            newToken = models.Token(user = user)
-            newToken.save()
+            tokens = models.Token.objects.filter(user = user).delete()
+            newToken = None
+            try:
+                newToken = models.Token.objects.get(user = user)
+            except:
+                newToken = models.Token(user = user)
+                newToken.save()
             encoded = jwt.encode(
                 {'id':user.username, 'email':user.email},
                 'MySiteSecret', algorithm='HS256')
-            return HttpResponse(encoded, status=200)
+            userData = {
+                'token': encoded.decode('utf-8'),
+                'id':user.username,
+                'email': user.email
+            }
+            return JsonResponse(userData, status=200, safe=False)
         else:
             return HttpResponse(status=404)
 # Create your views here.

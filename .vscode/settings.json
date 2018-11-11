@@ -1,0 +1,4 @@
+{
+  "python.pythonPath": "server/bin/python",
+  "python.linting.pylintEnabled": false
+}

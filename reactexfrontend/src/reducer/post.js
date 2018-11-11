@@ -1,6 +1,5 @@
 const initialState = {
-    postList: [],
-    commentList: [],
+    postList: {},
 }
 
 function post(state = initialState, action) {
