@@ -16,6 +16,14 @@ export function writePost(textObj) {
         data: textObj,
     };
 }
+
+export function writeComment(textObj) {
+    return {
+        type: 'WRITE_POST',
+        data: textObj,
+    };
+}
+
 export function deletePost(id) {
     return {
         type: 'DELETE_POST',

@@ -48,4 +48,15 @@ class Comment(View):
             return JsonResponse(results, safe=False)
         else:
             return HttpResponse(status = 403)
+
+    # @isSignedUser
+    def post(self, request):
+        body = json.loads(request.body)
+        comment = body['comment']
+        try:
+            newComment = models.Comment(reply=comment,post='',replier='')
+            newComment.save()
+            return HttpResponse(newComment.pk, status=200)
+        except Exception as e:
+            return HttpResponse(status=500)
 # Create your views here.

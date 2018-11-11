@@ -1,6 +1,7 @@
 import React from 'react';
 import InfoDetail from './InfoDetail';
 import InfoForm from './InfoForm';
+import CommentForm from './CommentForm';
 
 const Info = ({ match }) => {
     console.log(match)
@@ -9,7 +10,7 @@ const Info = ({ match }) => {
         return (
             <div>
                 <InfoDetail id={id} />
-                <InfoForm />
+                <CommentForm />
             </div>
         );
     } else {
