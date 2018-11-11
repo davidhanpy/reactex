@@ -13,7 +13,8 @@ class InfoForm extends PureComponent {
         text: '',
     };
     render() {
-        const { editorState, text } = this.state;
+        console.log('infoform');
+        const { text } = this.state;
         return (
             <div class="Form">
                 {/* <Editor

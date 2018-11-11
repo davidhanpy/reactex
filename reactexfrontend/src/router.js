@@ -15,11 +15,13 @@ class AppRouter extends React.Component {
                     <ul>
                         <li><Link to='/home'>Home</Link></li>
                         <li><Link to='/info'>Info</Link></li>
+                        <li><Link to='/login'>Login</Link></li>
                     </ul>
                 </header>
                 <main>
                     <Route path='/home' component={pages.Home}/>
-                    <Route path='/info/:id' component={pages.Info}/>
+                    <Route path='/info' component={pages.Info}/>
+                    <Route path='/login' component={pages.Login}/>
                 </main>
                 </div>
             </ConnectedRouter>
@@ -29,11 +31,9 @@ class AppRouter extends React.Component {
     componentDidMount(){
         axios.get('http://127.0.0.1:8000/blog/post/')
         .then((result) => {
-            this.props.initPost(result.data);
-        })
-        axios.get('http://127.0.0.1:8000/blog/comment/')
-        .then((result) => {
-            this.props.initComment(result.data);
+            const data = {};
+            result.data.forEach((post) => data[post.id] = post);
+            this.props.initPost(data);
         })
     }
 }

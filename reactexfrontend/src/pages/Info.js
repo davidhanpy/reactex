@@ -1,25 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Route } from 'react-router-dom';
 import InfoDetail from './InfoDetail';
 import InfoForm from './InfoForm';
-import CommentForm from './CommentForm';
 
 const Info = ({ match }) => {
-    console.log(match)
-    const id = match.params.id;
-    if (id) {
-        return (
-            <div>
-                <InfoDetail id={id} />
-                <CommentForm />
-            </div>
-        );
-    } else {
-        return (
-            <div>
-                <InfoForm />
-            </div>
-        );
-    }
+    return (
+        <Fragment>
+            <Route path="/:id" component={InfoDetail}/>
+            <Route path="/" component={InfoForm} />
+        </Fragment>
+    )
 
 }
 

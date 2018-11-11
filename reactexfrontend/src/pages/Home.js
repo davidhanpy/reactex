@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import './Home.css';
 
 const Home = ({postList}) => {
-    const pList = postList.map((post, idx) => {
-        return <Link key={idx} to={`/info/${idx}`}>
+    const pList = Object.values(postList).map((post) => {
+        return <Link key={post.id} to={`/info/${post.id}`}>
         <p>{post.text}</p>
         </Link>
     })

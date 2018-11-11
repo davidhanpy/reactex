@@ -1,13 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import CommentForm from './CommentForm';
 import getActions from '../action';
 import './InfoDetail.css';
 
 class InfoDetail extends React.PureComponent {
     state = {
+        postId: '',
         post: null,
         comment: null
+    }
+    static getDerivedStateFromProps(nextProps, prevState) {
+        const postId = nextProps.path.split('/')[2];
+        const post = nextProps.postList[postId];
+        
+        return { post, postId };
     }
     render() {
         if (this.state.post === null || this.state.post === undefined) {
@@ -21,7 +29,8 @@ class InfoDetail extends React.PureComponent {
                 </p>
                 <p>
                 </p>
-                <button onClick={this.onSubmit}>DELETE</button>
+                {/* <button onClick={this.onSubmit}>DELETE</button> */}
+                <CommentForm postId={this.state.postId}/>
             </div>
         );
     }
@@ -33,21 +42,6 @@ class InfoDetail extends React.PureComponent {
                 this.props.push('/home');
             }
         });
-    }
-
-    componentDidMount() {
-        
-        const postId = this.props.path.split('/')[2];
-        const post = this.props.postList[Number(postId)];
-        const comment = [this.props.commentList]
-        // var result = new Array();
-        // console.log(comment.length)
-        // for (var k = 0; k < comment.length; k++) {
-        //     console.log(k, comment[k]);
-        //     result = result.concat(comment[k])
-        // }
-        // console.log(result)
-        this.setState({ post, comment });
     }
 }
 function mapStateToProps(state) {
