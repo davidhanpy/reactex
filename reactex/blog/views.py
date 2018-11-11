@@ -18,7 +18,7 @@ class Post(View):
             return JsonResponse(results, safe=False)
         else:
             return HttpResponse(status = 403)
-    # @isSignedUser
+    @isSignedUser
     def post(self, request):
         body = json.loads(request.body)
         text = body['text']
