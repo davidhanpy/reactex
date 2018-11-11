@@ -8,7 +8,7 @@ import json
 
 
 class Post(View):
-    # @isSignedUser
+    @isSignedUser
     def get(self, request):
         if isSignedUser(request):
             posts = models.Post.objects.all()
@@ -29,7 +29,7 @@ class Post(View):
         except Exception as e:
             return HttpResponse(status=500)
 
-    # @isSignedUser
+    @isSignedUser
     def delete(self, request):
         ID = request.GET.get('id',None)
         DeletePost = models.Post.objects.get(pk=ID)
@@ -38,7 +38,7 @@ class Post(View):
         return HttpResponse(idx)
 
 class Comment(View):
-    # @isSignedUser
+    @isSignedUser
     def get(self, request):
         if isSignedUser(request):
             comments = models.Comment.objects.all()
@@ -49,7 +49,7 @@ class Comment(View):
         else:
             return HttpResponse(status = 403)
 
-    # @isSignedUser
+    @isSignedUser
     def post(self, request):
         body = json.loads(request.body)
         comment = body['comment']
